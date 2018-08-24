@@ -1,7 +1,13 @@
 #!/bin/bash
 VCN=`nslookup mapr-datanode-1 | grep Name | gawk '{print $2}' | cut -d '.' -f 2-5`
-bastion=`nslookup mapr-bastion | grep Name | gawk '{print $2}'`
-
+for b in `seq 1 3`; do
+        bastion=`nslookup mapr-bastion.bastion${b}.maprvcn.oraclevcn.com | grep Name | gawk '{print $2}'`
+        if [ -z $bastion ]; then
+                continue
+        else
+                break
+        fi
+done;
 out=/opt/mapr/installer/mapr_advanced.yaml
 
 make_yaml () {
