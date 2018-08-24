@@ -44,7 +44,7 @@ Cluster provisioning can take up to 45 minutes.
 
 Note that as part of this deployment, ssh keys are used for root level access to provisioned hosts in order to setup software.  The key used is the same as the OPC user which has super-user access to the hosts by default.   If enhanced security is desired, then the following steps should be taken after the Cluster is up and running:
 
-Remove ssh private keys from the Bastion and Utility hosts
+Remove ssh private keys from the Bastion host
 
         rm -f /home/opc/.ssh/id_rsa
 
