@@ -16,9 +16,9 @@ ssh_check () {
         if [ -z $user ]; then
                 user="opc"
         fi
-        echo -ne "Checking SSH as $user on ${hostfqdn} [*"
+        echo -ne "Checking SSH as $user on ${host} [*"
         while [ "$ssh_chk" != "0" ]; do
-                ssh_chk=`ssh -o StrictHostKeyChecking=no -q -i /home/opc/.ssh/id_rsa ${user}@${hostfqdn} 'cat /home/opc/.done'`
+                ssh_chk=`ssh -o StrictHostKeyChecking=no -q -i /home/opc/.ssh/id_rsa ${user}@${host} 'cat /home/opc/.done'`
                 if [ -z $ssh_chk ]; then
                         continue
                 elif [ $ssh_chk = "0" ]; then
