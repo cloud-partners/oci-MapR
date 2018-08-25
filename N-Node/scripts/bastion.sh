@@ -13,6 +13,7 @@ scp_cmd () {
 
 ssh_check () {
         ssh_chk="1"
+	user=$1
         if [ -z $user ]; then
                 user="opc"
         fi
@@ -28,7 +29,7 @@ ssh_check () {
                 echo -n "*"
         done;
         echo -ne "*] - DONE\n"
-        unset sshchk 
+        unset ssh_chk 
         unset user
 }
 
