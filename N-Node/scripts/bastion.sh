@@ -21,7 +21,6 @@ ssh_check () {
                 ssh_chk=`ssh -o StrictHostKeyChecking=no -q -i /home/opc/.ssh/id_rsa ${user}@${host} 'cat /home/opc/.done'`
                 if [ -z $ssh_chk ]; then
 			ssh_chk="1"
-                        continue
                 elif [ $ssh_chk = "0" ]; then
                         continue
                 fi
