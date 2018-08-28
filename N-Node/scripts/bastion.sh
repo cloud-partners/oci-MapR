@@ -38,7 +38,8 @@ ssh_check () {
                         sleep 5
                         echo -n "*"
                         continue
-                fi        done;
+                fi        
+	done;
         echo -ne "*] - DONE\n"
         unset ssh_chk 
         unset user
