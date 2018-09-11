@@ -1,14 +1,9 @@
 #!/bin/bash
 VCN=`nslookup mapr-datanode-1 | grep Name | gawk '{print $2}' | cut -d '.' -f 2-5`
-for b in `seq 1 3`; do
-        bastion=`nslookup mapr-bastion.bastion${b}.maprvcn.oraclevcn.com | grep Name | gawk '{print $2}'`
-        if [ -z $bastion ]; then
-                continue
-        else
-                break
-        fi
-done;
+bastion=`nslookup mapr-bastion | grep Name | gawk '{print $2}'`
+
 out=/opt/mapr/installer/mapr_advanced.yaml
+#out=/home/opc/mapr.yaml
 
 make_yaml () {
 echo "environment:" > $out
@@ -16,8 +11,12 @@ echo "  mapr_core_version: 6.0.1" >> $out
 echo "config:" >> $out
 echo "  hosts:" >> $out
 echo "    - $bastion" >> $out
-for host in `cat host_list`; do 
-	echo "    - $host" >> $out
+for host in `cat host_list`; do
+	if [ -z $host ]; then 
+		continue
+	else 
+		echo "    - $host" >> $out
+	fi
 done;
 echo "  ssh_id: root" >> $out
 echo "  ssh_key_file: /home/mapr/.ssh/id_rsa" >> $out
@@ -37,8 +36,12 @@ echo "    mapr-opentsdb:" >> $out
 echo "    mapr-collectd:" >> $out
 echo "groups:" >> $out
 echo "  - hosts:" >> $out
-for host in `cat host_list | head -n3`; do 
-	echo "    - $host" >> $out
+for host in `cat host_list | head -n3`; do
+	if [ -z $host ]; then
+		continue
+	else 
+		echo "    - $host" >> $out
+	fi
 done;
 echo "    label: CONTROL" >> $out
 echo "    services:" >> $out
@@ -73,14 +76,22 @@ echo "    - mapr-spark-thriftserver" >> $out
 echo "    - mapr-qs" >> $out
 echo "  - hosts:" >> $out
 for host in `cat host_list | head -n3`; do
-        echo "    - $host" >> $out
+	if [ -z $host ]; then 
+		continue
+	else
+        	echo "    - $host" >> $out
+	fi
 done;
 echo "    label: MONITORING_MASTER" >> $out
 echo "    services:" >> $out
 echo "    - mapr-opentsdb" >> $out
 echo "  - hosts:" >> $out
 for host in `cat host_list`; do 
-        echo "    - $host" >> $out
+	if [ -z $host ]; then
+		continue
+	else
+        	echo "    - $host" >> $out
+	fi
 done;
 echo "    label: DATA" >> $out
 echo "    services:" >> $out
@@ -101,7 +112,11 @@ echo "    - mapr-spark-client" >> $out
 echo "    - mapr-kafka" >> $out
 echo "  - hosts:" >> $out
 for host in `cat host_list`; do
-        echo "    - $host" >> $out
+	if [ -z $host ]; then 
+		continue
+	else
+        	echo "    - $host" >> $out
+	fi
 done; 
 echo "    label: DEFAULT" >> $out
 echo "    services:" >> $out
@@ -109,7 +124,10 @@ echo "    - mapr-core" >> $out
 echo "    - mapr-collectd" >> $out
 echo "    - mapr-data-access-gateway" >> $out
 echo "hosts:" >> $out
-for host in `cat datanodes`; do   
+for host in `cat datanodes`; do 
+	if [ -z $host ]; then
+		continue
+	else  
 	echo "  - id: $host" >> $out
 	echo "    disks:" >> $out
 	nvme_chk=`cat /tmp/disk_info | grep nvme`
@@ -119,9 +137,10 @@ for host in `cat datanodes`; do
 			echo "      /dev/$disk:" >> $out
 		done;
 	else
-                for disk in `cat /tmp/disk_info | grep nvme`; do
+                for disk in `cat /tmp/disk_info | grep -iv nvme`; do
                         echo "      /dev/$disk:" >> $out
                 done;
+	fi
 	fi
 done;
 }
