@@ -1,0 +1,218 @@
+## HDFS Volumes
+
+resource "oci_core_volume" "DataNode1" {
+  count = "${var.nodecount}"
+  availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1],"name")}"
+  compartment_id = "${var.compartment_ocid}"
+  display_name = "MapR DataNode ${format("%01d", count.index+1)} Volume 1"
+  size_in_gbs = "${var.blocksize_in_gbs}"
+}
+
+
+resource "oci_core_volume_attachment" "DataNode1" {
+  count = "${var.nodecount}"
+  attachment_type = "iscsi"
+  compartment_id = "${var.compartment_ocid}"
+  instance_id = "${oci_core_instance.DataNodeNode.*.id[count.index]}"
+  volume_id = "${oci_core_volume.DataNode1.*.id[count.index]}"
+}
+
+### DataNode Block Device 2
+
+resource "oci_core_volume" "DataNode2" {
+  count = "${var.nodecount}"
+  availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1],"name")}"
+  compartment_id = "${var.compartment_ocid}"
+  display_name = "MapR DataNode ${format("%01d", count.index+1)} Volume 2"
+  size_in_gbs = "${var.blocksize_in_gbs}"
+}
+
+
+resource "oci_core_volume_attachment" "DataNode2" {
+  count = "${var.nodecount}"
+  attachment_type = "iscsi"
+  compartment_id = "${var.compartment_ocid}"
+  instance_id = "${oci_core_instance.DataNodeNode.*.id[count.index]}"
+  volume_id = "${oci_core_volume.DataNode2.*.id[count.index]}"
+}
+
+### DataNode Block Device 3
+
+resource "oci_core_volume" "DataNode3" {
+  count = "${var.nodecount}"
+  availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1],"name")}"
+  compartment_id = "${var.compartment_ocid}"
+  display_name = "MapR DataNode ${format("%01d", count.index+1)} Volume 3"
+  size_in_gbs = "${var.blocksize_in_gbs}"
+}
+
+resource "oci_core_volume_attachment" "DataNode3" {
+  count = "${var.nodecount}"
+  attachment_type = "iscsi"
+  compartment_id = "${var.compartment_ocid}"
+  instance_id = "${oci_core_instance.DataNodeNode.*.id[count.index]}"
+  volume_id = "${oci_core_volume.DataNode3.*.id[count.index]}"
+}
+
+## Block 4
+
+resource "oci_core_volume" "DataNode4" {
+  count = "${var.nodecount}"
+  availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1],"name")}"
+  compartment_id = "${var.compartment_ocid}"
+  display_name = "MapR DataNode ${format("%01d", count.index+1)} Volume 4"
+  size_in_gbs = "${var.blocksize_in_gbs}"
+}
+
+resource "oci_core_volume_attachment" "DataNode4" {
+  count = "${var.nodecount}"
+  attachment_type = "iscsi"
+  compartment_id = "${var.compartment_ocid}"
+  instance_id = "${oci_core_instance.DataNodeNode.*.id[count.index]}"
+  volume_id = "${oci_core_volume.DataNode4.*.id[count.index]}"
+}
+
+## Block 5
+
+resource "oci_core_volume" "DataNode5" {
+  count = "${var.nodecount}"
+  availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1],"name")}"
+  compartment_id = "${var.compartment_ocid}"
+  display_name = "MapR DataNode ${format("%01d", count.index+1)} Volume 5"
+  size_in_gbs = "${var.blocksize_in_gbs}"
+}
+
+resource "oci_core_volume_attachment" "DataNode5" {
+  count = "${var.nodecount}"
+  attachment_type = "iscsi"
+  compartment_id = "${var.compartment_ocid}"
+  instance_id = "${oci_core_instance.DataNodeNode.*.id[count.index]}"
+  volume_id = "${oci_core_volume.DataNode5.*.id[count.index]}"
+}
+
+## Block 6
+
+resource "oci_core_volume" "DataNode6" {
+  count = "${var.nodecount}"
+  availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1],"name")}"
+  compartment_id = "${var.compartment_ocid}"
+  display_name = "MapR DataNode ${format("%01d", count.index+1)} Volume 6"
+  size_in_gbs = "${var.blocksize_in_gbs}"
+}
+
+resource "oci_core_volume_attachment" "DataNode6" {
+  count = "${var.nodecount}"
+  attachment_type = "iscsi"
+  compartment_id = "${var.compartment_ocid}"
+  instance_id = "${oci_core_instance.DataNodeNode.*.id[count.index]}"
+  volume_id = "${oci_core_volume.DataNode6.*.id[count.index]}"
+}
+
+## Block 7
+
+resource "oci_core_volume" "DataNode7" {
+  count = "${var.nodecount}"
+  availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1],"name")}"
+  compartment_id = "${var.compartment_ocid}"
+  display_name = "MapR DataNode ${format("%01d", count.index+1)} Volume 7"
+  size_in_gbs = "${var.blocksize_in_gbs}"
+}
+
+resource "oci_core_volume_attachment" "DataNode7" {
+  count = "${var.nodecount}"
+  attachment_type = "iscsi"
+  compartment_id = "${var.compartment_ocid}"
+  instance_id = "${oci_core_instance.DataNodeNode.*.id[count.index]}"
+  volume_id = "${oci_core_volume.DataNode7.*.id[count.index]}"
+}
+
+## Block 8
+
+resource "oci_core_volume" "DataNode8" {
+  count = "${var.nodecount}"
+  availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1],"name")}"
+  compartment_id = "${var.compartment_ocid}"
+  display_name = "MapR DataNode ${format("%01d", count.index+1)} Volume 8"
+  size_in_gbs = "${var.blocksize_in_gbs}"
+}
+
+resource "oci_core_volume_attachment" "DataNode8" {
+  count = "${var.nodecount}"
+  attachment_type = "iscsi"
+  compartment_id = "${var.compartment_ocid}"
+  instance_id = "${oci_core_instance.DataNodeNode.*.id[count.index]}"
+  volume_id = "${oci_core_volume.DataNode8.*.id[count.index]}"
+}
+
+## Block 9
+
+resource "oci_core_volume" "DataNode9" {
+  count = "${var.nodecount}"
+  availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1],"name")}"
+  compartment_id = "${var.compartment_ocid}"
+  display_name = "MapR DataNode ${format("%01d", count.index+1)} Volume 9"
+  size_in_gbs = "${var.blocksize_in_gbs}"
+}
+
+resource "oci_core_volume_attachment" "DataNode9" {
+  count = "${var.nodecount}"
+  attachment_type = "iscsi"
+  compartment_id = "${var.compartment_ocid}"
+  instance_id = "${oci_core_instance.DataNodeNode.*.id[count.index]}"
+  volume_id = "${oci_core_volume.DataNode9.*.id[count.index]}"
+}
+
+## Block 10
+
+resource "oci_core_volume" "DataNode10" {
+  count = "${var.nodecount}"
+  availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1],"name")}"
+  compartment_id = "${var.compartment_ocid}"
+  display_name = "MapR DataNode ${format("%01d", count.index+1)} Volume 10"
+  size_in_gbs = "${var.blocksize_in_gbs}"
+}
+
+resource "oci_core_volume_attachment" "DataNode10" {
+  count = "${var.nodecount}"
+  attachment_type = "iscsi"
+  compartment_id = "${var.compartment_ocid}"
+  instance_id = "${oci_core_instance.DataNodeNode.*.id[count.index]}"
+  volume_id = "${oci_core_volume.DataNode10.*.id[count.index]}"
+}
+
+## Block 11
+
+resource "oci_core_volume" "DataNode11" {
+  count = "${var.nodecount}"
+  availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1],"name")}"
+  compartment_id = "${var.compartment_ocid}"
+  display_name = "MapR DataNode ${format("%01d", count.index+1)} Volume 11"
+  size_in_gbs = "${var.blocksize_in_gbs}"
+}
+
+resource "oci_core_volume_attachment" "DataNode11" {
+  count = "${var.nodecount}"
+  attachment_type = "iscsi"
+  compartment_id = "${var.compartment_ocid}"
+  instance_id = "${oci_core_instance.DataNodeNode.*.id[count.index]}"
+  volume_id = "${oci_core_volume.DataNode11.*.id[count.index]}"
+}
+
+## Block 12
+
+resource "oci_core_volume" "DataNode12" {
+  count = "${var.nodecount}"
+  availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1],"name")}"
+  compartment_id = "${var.compartment_ocid}"
+  display_name = "MapR DataNode ${format("%01d", count.index+1)} Volume 12"
+  size_in_gbs = "${var.blocksize_in_gbs}"
+}
+
+resource "oci_core_volume_attachment" "DataNode12" {
+  count = "${var.nodecount}"
+  attachment_type = "iscsi"
+  compartment_id = "${var.compartment_ocid}"
+  instance_id = "${oci_core_instance.DataNodeNode.*.id[count.index]}"
+  volume_id = "${oci_core_volume.DataNode12.*.id[count.index]}"
+}
+
