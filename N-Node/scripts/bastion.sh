@@ -70,10 +70,10 @@ domain="maprvcn.oraclevcn.com"
 ct=1;
 dn_count=0; 
 while [ $ct -lt 1000 ]; do
-        nslk=`nslookup mapr-datanode-${ct}`
+        nslk=`host mapr-datanode-${ct}`
         ns_ck=`echo -e $?`
         if [ $ns_ck = 0 ]; then
-		hname=`nslookup mapr-datanode-${ct} | grep Name | gawk '{print $2}'`
+		hname=`host mapr-datanode-${ct} | head -n 1 | gawk '{print $1}'`
 		echo "$hname" >> host_list;
 		echo "$hname" >> datanodes;
 		dn_count=$((dn_count+1))
