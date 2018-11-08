@@ -94,7 +94,6 @@ echo "    - mapr-hbase-rest" >> $out
 echo "    - mapr-drill" >> $out
 echo "    - mapr-nodemanager" >> $out
 echo "    - mapr-fileserver" >> $out
-echo "    - mapr-nfs" >> $out
 echo "  - hosts:" >> $out
 echo "    - $bastion" >> $out
 echo "    label: CLIENT" >> $out
