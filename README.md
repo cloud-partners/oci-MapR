@@ -1,9 +1,6 @@
 # oci-mapr
 This is a Terraform template for deploying a fully configured MapR cluster on OCI. 
 
-## N-Node
-This is an N-Node template allowing for dynamic number of Data Nodes to be deployed with MapR.
-
 ## How to use this template
 In addition to an active tenancy on OCI, you will need a functional installation of Terraform, and an API key for a privileged user in the tenancy.  See these documentation links for more information:
 
