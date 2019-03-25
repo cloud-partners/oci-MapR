@@ -9,9 +9,7 @@ In addition to an active tenancy on OCI, you will need a functional installation
 
 Once the pre-requisites are in place, you will need to copy the template from this repository to where you have Terraform installed.  Refer to the README.md for the template for additional deployment instructions.
 
-# Usage Guide
-
-## PREREQUISITES
+## Prerequisites
 
 Installation has a dependency on Terraform being installed and configured for the user tenancy.   As such an "env-vars" file is included with this package that contains all the necessary environment variables.  This file should be updated with the appropriate values prior to installation.  To source this file prior to installation, either reference it in your .rc file for your shell's or run the following:
 
