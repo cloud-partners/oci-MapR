@@ -1,7 +1,7 @@
 resource "null_resource" "mapr-setup" {
     depends_on = ["oci_core_instance.datanode","oci_core_instance.bastion"]
     provisioner "file" {
-      source = "scripts/"
+      source = "../scripts/"
       destination = "/home/opc/"
       connection {
         agent = false
