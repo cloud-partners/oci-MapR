@@ -74,6 +74,7 @@ Set the above to false, or remove the line entirely.  This will provision Public
 
 Deploy using standard Terraform commands
 
+	source env-vars
 	terraform init 
 	terraform plan
 	terraform apply
