@@ -28,7 +28,7 @@ It is also advised to add the Block Volume attachments as dependencies for remot
 
 For 12 Block Volumes, this should be changed to:
 
-	depends_on = ["oci_core_instance.datanode","oci_core_instance.bastion","oci_core_volume_attachment.DataNode1","oci_core_volume_attachment.DataNode2","oci_core_volume_attachment.DataNode3","oci_core_volume_attachment.DataNode4","oci_core_volume_attachment.DataNode5","oci_core_volume_attachment.DataNode6","oci_core_volume_attachment.DataNode7","oci_core_volume_attachment.DataNode8","oci_core_volume_attachment.DataNode9","oci_core_volume_attachment.DataNode10","oci_core_volume_attachment.DataNode11","oci_core_volume_attachment.DataNode12"]
+	depends_on = ["oci_core_instance.datanode","oci_core_instance.bastion","oci_core_volume_attachment.datanode1","oci_core_volume_attachment.datanode2","oci_core_volume_attachment.datanode3","oci_core_volume_attachment.datanode4","oci_core_volume_attachment.datanode5","oci_core_volume_attachment.datanode6","oci_core_volume_attachment.datanode7","oci_core_volume_attachment.datanode8","oci_core_volume_attachment.datanode9","oci_core_volume_attachment.datanode10","oci_core_volume_attachment.datanode11","oci_core_volume_attachment.datanode12"]
 
 ## Password & User Details
 
