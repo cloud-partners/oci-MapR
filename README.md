@@ -11,9 +11,10 @@ First off you'll need to do some pre deploy setup.  That's all detailed [here](h
 
 ## Scaling
 
-Modify the env-vars file prior to deployment and modify the number of data nodes to scale your cluster dynamically.
+Modify the "variables.tf" file prior to deployment and set the number of data nodes to scale your cluster dynamically.
 
-	export TF_VAR_nodecount="5"
+	## Specify number of Data Node Hosts here
+	variable "nodecount" { default = "5" }
 
 The above deploys a 5 node cluster.
 
@@ -74,7 +75,6 @@ Set the above to false, or remove the line entirely.  This will provision Public
 
 Deploy using standard Terraform commands
 
-	source env-vars
 	terraform init 
 	terraform plan
 	terraform apply
