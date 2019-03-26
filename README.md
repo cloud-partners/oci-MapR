@@ -1,7 +1,7 @@
 # oci-mapr
 This is a Terraform template for deploying a fully configured MapR cluster on OCI.
 
-|             | Worker Nodes   | Bastion Instance |
+|             | Data Nodes   | Bastion Instance |
 |-------------|----------------|------------------|
 | Recommended | BM.DenseIO2.52 | VM.Standard2.4   | 
 | Minimum     | VM.Standard2.16 | VM.Standard2.1   |
