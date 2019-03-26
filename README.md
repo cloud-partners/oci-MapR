@@ -50,9 +50,12 @@ This sets the mapr user password in tune.sh for cluster hosts.
 This setup can be customized to use a specific version of MapR.   To do so, a couple modifications will need to be made.  
 
 * Modify scripts/mapr_repo_setup.sh to specify which MapR and MEP versions you want to use.
+	
 	mapr_version="6.0.1"
 	MEP_VERSION="5.0.0"
+
 * Modify scripts/mapr_advanced_yaml.sh to set these versions.   Pre-configured versions of this script are also included for MapR 6 and MapR 5 - this setup defaults to MapR 6.
+
 	echo "  mapr_core_version: 6.0.1" >> $out
 	echo "  mep_version: 5.0.0" >> $out
 
