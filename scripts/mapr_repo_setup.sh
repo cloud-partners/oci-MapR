@@ -1,7 +1,7 @@
 #!/bin/bash
 
 mapr_version="6.0.1"
-MEP_VERSION="3.0.3"
+MEP_VERSION="5.0.0"
 for b in `seq 1 3`; do
         bastion=`nslookup mapr-bastion.bastion${b}.maprvcn.oraclevcn.com | grep Name | gawk '{print $2}'`
         if [ -z $bastion ]; then

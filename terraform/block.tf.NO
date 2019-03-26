@@ -1,218 +1,218 @@
 ## HDFS Volumes
 
-resource "oci_core_volume" "DataNode1" {
+resource "oci_core_volume" "datanode1" {
   count = "${var.nodecount}"
   availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1],"name")}"
   compartment_id = "${var.compartment_ocid}"
-  display_name = "MapR DataNode ${format("%01d", count.index+1)} Volume 1"
+  display_name = "MapR datanode ${format("%01d", count.index+1)} Volume 1"
   size_in_gbs = "${var.blocksize_in_gbs}"
 }
 
 
-resource "oci_core_volume_attachment" "DataNode1" {
+resource "oci_core_volume_attachment" "datanode1" {
   count = "${var.nodecount}"
   attachment_type = "iscsi"
   compartment_id = "${var.compartment_ocid}"
-  instance_id = "${oci_core_instance.DataNodeNode.*.id[count.index]}"
-  volume_id = "${oci_core_volume.DataNode1.*.id[count.index]}"
+  instance_id = "${oci_core_instance.datanode.*.id[count.index]}"
+  volume_id = "${oci_core_volume.datanode1.*.id[count.index]}"
 }
 
-### DataNode Block Device 2
+### datanode Block Device 2
 
-resource "oci_core_volume" "DataNode2" {
+resource "oci_core_volume" "datanode2" {
   count = "${var.nodecount}"
   availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1],"name")}"
   compartment_id = "${var.compartment_ocid}"
-  display_name = "MapR DataNode ${format("%01d", count.index+1)} Volume 2"
+  display_name = "MapR datanode ${format("%01d", count.index+1)} Volume 2"
   size_in_gbs = "${var.blocksize_in_gbs}"
 }
 
 
-resource "oci_core_volume_attachment" "DataNode2" {
+resource "oci_core_volume_attachment" "datanode2" {
   count = "${var.nodecount}"
   attachment_type = "iscsi"
   compartment_id = "${var.compartment_ocid}"
-  instance_id = "${oci_core_instance.DataNodeNode.*.id[count.index]}"
-  volume_id = "${oci_core_volume.DataNode2.*.id[count.index]}"
+  instance_id = "${oci_core_instance.datanode.*.id[count.index]}"
+  volume_id = "${oci_core_volume.datanode2.*.id[count.index]}"
 }
 
-### DataNode Block Device 3
+### datanode Block Device 3
 
-resource "oci_core_volume" "DataNode3" {
+resource "oci_core_volume" "datanode3" {
   count = "${var.nodecount}"
   availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1],"name")}"
   compartment_id = "${var.compartment_ocid}"
-  display_name = "MapR DataNode ${format("%01d", count.index+1)} Volume 3"
+  display_name = "MapR datanode ${format("%01d", count.index+1)} Volume 3"
   size_in_gbs = "${var.blocksize_in_gbs}"
 }
 
-resource "oci_core_volume_attachment" "DataNode3" {
+resource "oci_core_volume_attachment" "datanode3" {
   count = "${var.nodecount}"
   attachment_type = "iscsi"
   compartment_id = "${var.compartment_ocid}"
-  instance_id = "${oci_core_instance.DataNodeNode.*.id[count.index]}"
-  volume_id = "${oci_core_volume.DataNode3.*.id[count.index]}"
+  instance_id = "${oci_core_instance.datanode.*.id[count.index]}"
+  volume_id = "${oci_core_volume.datanode3.*.id[count.index]}"
 }
 
 ## Block 4
 
-resource "oci_core_volume" "DataNode4" {
+resource "oci_core_volume" "datanode4" {
   count = "${var.nodecount}"
   availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1],"name")}"
   compartment_id = "${var.compartment_ocid}"
-  display_name = "MapR DataNode ${format("%01d", count.index+1)} Volume 4"
+  display_name = "MapR datanode ${format("%01d", count.index+1)} Volume 4"
   size_in_gbs = "${var.blocksize_in_gbs}"
 }
 
-resource "oci_core_volume_attachment" "DataNode4" {
+resource "oci_core_volume_attachment" "datanode4" {
   count = "${var.nodecount}"
   attachment_type = "iscsi"
   compartment_id = "${var.compartment_ocid}"
-  instance_id = "${oci_core_instance.DataNodeNode.*.id[count.index]}"
-  volume_id = "${oci_core_volume.DataNode4.*.id[count.index]}"
+  instance_id = "${oci_core_instance.datanode.*.id[count.index]}"
+  volume_id = "${oci_core_volume.datanode4.*.id[count.index]}"
 }
 
 ## Block 5
 
-resource "oci_core_volume" "DataNode5" {
+resource "oci_core_volume" "datanode5" {
   count = "${var.nodecount}"
   availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1],"name")}"
   compartment_id = "${var.compartment_ocid}"
-  display_name = "MapR DataNode ${format("%01d", count.index+1)} Volume 5"
+  display_name = "MapR datanode ${format("%01d", count.index+1)} Volume 5"
   size_in_gbs = "${var.blocksize_in_gbs}"
 }
 
-resource "oci_core_volume_attachment" "DataNode5" {
+resource "oci_core_volume_attachment" "datanode5" {
   count = "${var.nodecount}"
   attachment_type = "iscsi"
   compartment_id = "${var.compartment_ocid}"
-  instance_id = "${oci_core_instance.DataNodeNode.*.id[count.index]}"
-  volume_id = "${oci_core_volume.DataNode5.*.id[count.index]}"
+  instance_id = "${oci_core_instance.datanode.*.id[count.index]}"
+  volume_id = "${oci_core_volume.datanode5.*.id[count.index]}"
 }
 
 ## Block 6
 
-resource "oci_core_volume" "DataNode6" {
+resource "oci_core_volume" "datanode6" {
   count = "${var.nodecount}"
   availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1],"name")}"
   compartment_id = "${var.compartment_ocid}"
-  display_name = "MapR DataNode ${format("%01d", count.index+1)} Volume 6"
+  display_name = "MapR datanode ${format("%01d", count.index+1)} Volume 6"
   size_in_gbs = "${var.blocksize_in_gbs}"
 }
 
-resource "oci_core_volume_attachment" "DataNode6" {
+resource "oci_core_volume_attachment" "datanode6" {
   count = "${var.nodecount}"
   attachment_type = "iscsi"
   compartment_id = "${var.compartment_ocid}"
-  instance_id = "${oci_core_instance.DataNodeNode.*.id[count.index]}"
-  volume_id = "${oci_core_volume.DataNode6.*.id[count.index]}"
+  instance_id = "${oci_core_instance.datanode.*.id[count.index]}"
+  volume_id = "${oci_core_volume.datanode6.*.id[count.index]}"
 }
 
 ## Block 7
 
-resource "oci_core_volume" "DataNode7" {
+resource "oci_core_volume" "datanode7" {
   count = "${var.nodecount}"
   availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1],"name")}"
   compartment_id = "${var.compartment_ocid}"
-  display_name = "MapR DataNode ${format("%01d", count.index+1)} Volume 7"
+  display_name = "MapR datanode ${format("%01d", count.index+1)} Volume 7"
   size_in_gbs = "${var.blocksize_in_gbs}"
 }
 
-resource "oci_core_volume_attachment" "DataNode7" {
+resource "oci_core_volume_attachment" "datanode7" {
   count = "${var.nodecount}"
   attachment_type = "iscsi"
   compartment_id = "${var.compartment_ocid}"
-  instance_id = "${oci_core_instance.DataNodeNode.*.id[count.index]}"
-  volume_id = "${oci_core_volume.DataNode7.*.id[count.index]}"
+  instance_id = "${oci_core_instance.datanode.*.id[count.index]}"
+  volume_id = "${oci_core_volume.datanode7.*.id[count.index]}"
 }
 
 ## Block 8
 
-resource "oci_core_volume" "DataNode8" {
+resource "oci_core_volume" "datanode8" {
   count = "${var.nodecount}"
   availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1],"name")}"
   compartment_id = "${var.compartment_ocid}"
-  display_name = "MapR DataNode ${format("%01d", count.index+1)} Volume 8"
+  display_name = "MapR datanode ${format("%01d", count.index+1)} Volume 8"
   size_in_gbs = "${var.blocksize_in_gbs}"
 }
 
-resource "oci_core_volume_attachment" "DataNode8" {
+resource "oci_core_volume_attachment" "datanode8" {
   count = "${var.nodecount}"
   attachment_type = "iscsi"
   compartment_id = "${var.compartment_ocid}"
-  instance_id = "${oci_core_instance.DataNodeNode.*.id[count.index]}"
-  volume_id = "${oci_core_volume.DataNode8.*.id[count.index]}"
+  instance_id = "${oci_core_instance.datanode.*.id[count.index]}"
+  volume_id = "${oci_core_volume.datanode8.*.id[count.index]}"
 }
 
 ## Block 9
 
-resource "oci_core_volume" "DataNode9" {
+resource "oci_core_volume" "datanode9" {
   count = "${var.nodecount}"
   availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1],"name")}"
   compartment_id = "${var.compartment_ocid}"
-  display_name = "MapR DataNode ${format("%01d", count.index+1)} Volume 9"
+  display_name = "MapR datanode ${format("%01d", count.index+1)} Volume 9"
   size_in_gbs = "${var.blocksize_in_gbs}"
 }
 
-resource "oci_core_volume_attachment" "DataNode9" {
+resource "oci_core_volume_attachment" "datanode9" {
   count = "${var.nodecount}"
   attachment_type = "iscsi"
   compartment_id = "${var.compartment_ocid}"
-  instance_id = "${oci_core_instance.DataNodeNode.*.id[count.index]}"
-  volume_id = "${oci_core_volume.DataNode9.*.id[count.index]}"
+  instance_id = "${oci_core_instance.datanode.*.id[count.index]}"
+  volume_id = "${oci_core_volume.datanode9.*.id[count.index]}"
 }
 
 ## Block 10
 
-resource "oci_core_volume" "DataNode10" {
+resource "oci_core_volume" "datanode10" {
   count = "${var.nodecount}"
   availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1],"name")}"
   compartment_id = "${var.compartment_ocid}"
-  display_name = "MapR DataNode ${format("%01d", count.index+1)} Volume 10"
+  display_name = "MapR datanode ${format("%01d", count.index+1)} Volume 10"
   size_in_gbs = "${var.blocksize_in_gbs}"
 }
 
-resource "oci_core_volume_attachment" "DataNode10" {
+resource "oci_core_volume_attachment" "datanode10" {
   count = "${var.nodecount}"
   attachment_type = "iscsi"
   compartment_id = "${var.compartment_ocid}"
-  instance_id = "${oci_core_instance.DataNodeNode.*.id[count.index]}"
-  volume_id = "${oci_core_volume.DataNode10.*.id[count.index]}"
+  instance_id = "${oci_core_instance.datanode.*.id[count.index]}"
+  volume_id = "${oci_core_volume.datanode10.*.id[count.index]}"
 }
 
 ## Block 11
 
-resource "oci_core_volume" "DataNode11" {
+resource "oci_core_volume" "datanode11" {
   count = "${var.nodecount}"
   availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1],"name")}"
   compartment_id = "${var.compartment_ocid}"
-  display_name = "MapR DataNode ${format("%01d", count.index+1)} Volume 11"
+  display_name = "MapR datanode ${format("%01d", count.index+1)} Volume 11"
   size_in_gbs = "${var.blocksize_in_gbs}"
 }
 
-resource "oci_core_volume_attachment" "DataNode11" {
+resource "oci_core_volume_attachment" "datanode11" {
   count = "${var.nodecount}"
   attachment_type = "iscsi"
   compartment_id = "${var.compartment_ocid}"
-  instance_id = "${oci_core_instance.DataNodeNode.*.id[count.index]}"
-  volume_id = "${oci_core_volume.DataNode11.*.id[count.index]}"
+  instance_id = "${oci_core_instance.datanode.*.id[count.index]}"
+  volume_id = "${oci_core_volume.datanode11.*.id[count.index]}"
 }
 
 ## Block 12
 
-resource "oci_core_volume" "DataNode12" {
+resource "oci_core_volume" "datanode12" {
   count = "${var.nodecount}"
   availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1],"name")}"
   compartment_id = "${var.compartment_ocid}"
-  display_name = "MapR DataNode ${format("%01d", count.index+1)} Volume 12"
+  display_name = "MapR datanode ${format("%01d", count.index+1)} Volume 12"
   size_in_gbs = "${var.blocksize_in_gbs}"
 }
 
-resource "oci_core_volume_attachment" "DataNode12" {
+resource "oci_core_volume_attachment" "datanode12" {
   count = "${var.nodecount}"
   attachment_type = "iscsi"
   compartment_id = "${var.compartment_ocid}"
-  instance_id = "${oci_core_instance.DataNodeNode.*.id[count.index]}"
-  volume_id = "${oci_core_volume.DataNode12.*.id[count.index]}"
+  instance_id = "${oci_core_instance.datanode.*.id[count.index]}"
+  volume_id = "${oci_core_volume.datanode12.*.id[count.index]}"
 }
 

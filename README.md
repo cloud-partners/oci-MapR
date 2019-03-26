@@ -1,39 +1,58 @@
 # oci-mapr
 This is a Terraform template for deploying a fully configured MapR cluster on OCI.
 
-## How to use this template
-In addition to an active tenancy on OCI, you will need a functional installation of Terraform, and an API key for a privileged user in the tenancy.  See these documentation links for more information:
-
-* [Getting Started with Terraform on OCI](https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/terraformgetstarted.htm)
-* [How to Generate an API Signing Key](https://docs.cloud.oracle.com/iaas/Content/API/Concepts/apisigningkey.htm#How)
-
-Once the pre-requisites are in place, you will need to copy the template from this repository to where you have Terraform installed.  Refer to the README.md for the template for additional deployment instructions.
+|             | Worker Nodes   | Bastion Instance |
+|-------------|----------------|------------------|
+| Recommended | BM.DenseIO2.52 | VM.Standard2.4   | 
+| Minimum     | VM.Standard2.16 | VM.Standard2.1   |
 
 ## Prerequisites
-
-Installation has a dependency on Terraform being installed and configured for the user tenancy.   As such an "env-vars" file is included with this package that contains all the necessary environment variables.  This file should be updated with the appropriate values prior to installation.  To source this file prior to installation, either reference it in your .rc file for your shell's or run the following:
-
-        source env-vars
+First off you'll need to do some pre deploy setup.  That's all detailed [here](https://github.com/oci-quickstart/oci-prerequisites).
 
 ## Scaling
 
 Modify the env-vars file prior to deployment and modify the number of data nodes to scale your cluster dynamically.
 
+	export TF_VAR_nodecount="5"
+
+The above deploys a 5 node cluster.
+
 ## Block Volumes
-Use of Block Volumes is supported with the example block.tf.NO.  Simply rename this file to block.tf and Terraform will create and attach Block Volumes which scale with Data Node count.  This template is set for 12 Block Volumes, defaulting to 1TB in size.   The size can be controlled by modifying the default value in variables.tf.  It is recommended to tailor your Block Volume topology when using VMs to support aggregate IO for your workload.   In practice it's best to have a minimum of 4 Block Volumes at 700GB or greater when using Bare Metal shapes.
+Use of Block Volumes is supported with the example block.tf.NO.  Simply rename this file to block.tf and Terraform will create and attach Block Volumes which scale with Data Node count.  This template is set for 12 Block Volumes, defaulting to 1TB in size.   The size can be controlled by modifying the default value in variables.tf.  It is recommended to tailor your Block Volume topology when using VMs to support aggregate IO for your workload.   In practice it's best to have a minimum of 4 Block Volumes at 700GB or greater at a minimum if not using DenseIO shapes.
 
 It is also advised to add the Block Volume attachments as dependencies for remote-exec.tf (in depends_on) to ensure remote execution is not triggered until all Block Volumes are created and attached.
+
+	depends_on = ["oci_core_instance.datanode","oci_core_instance.bastion"]
+
+For 12 Block Volumes, this should be changed to:
+
+	depends_on = ["oci_core_instance.datanode","oci_core_instance.bastion","oci_core_volume_attachment.DataNode1","oci_core_volume_attachment.DataNode2","oci_core_volume_attachment.DataNode3","oci_core_volume_attachment.DataNode4","oci_core_volume_attachment.DataNode5","oci_core_volume_attachment.DataNode6","oci_core_volume_attachment.DataNode7","oci_core_volume_attachment.DataNode8","oci_core_volume_attachment.DataNode9","oci_core_volume_attachment.DataNode10","oci_core_volume_attachment.DataNode11","oci_core_volume_attachment.DataNode12"]
 
 ## Password & User Details
 
 Modify the scripts/mapr_setup.sh and scripts/tune.sh to specify passwords for MapR user and MapR Cluster admin.
+
+	## SET PASSWORD HERE
+	echo "Somepassword1!" | passwd --stdin mapr
+
+This sets the mapr user password in mapr_setup.sh on the Bastion.
+
+	## SET PASSWORD HERE
+	echo "Somep@ssword1" | passwd mapr --stdin
+
+This sets the mapr user password in tune.sh for cluster hosts.
+
 
 ## MapR Version customization
 
 This setup can be customized to use a specific version of MapR.   To do so, a couple modifications will need to be made.  
 
 * Modify scripts/mapr_repo_setup.sh to specify which MapR and MEP versions you want to use.
+	mapr_version="6.0.1"
+	MEP_VERSION="5.0.0"
 * Modify scripts/mapr_advanced_yaml.sh to set these versions.   Pre-configured versions of this script are also included for MapR 6 and MapR 5 - this setup defaults to MapR 6.
+	echo "  mapr_core_version: 6.0.1" >> $out
+	echo "  mep_version: 5.0.0" >> $out
 
 ## Additional deployment customization
 
@@ -43,7 +62,11 @@ Modification of scripts/mapr_advanced_yaml.sh can be done to customize cluster a
 
 Deploy using standard Terraform commands
 
-        terraform init && terraform plan && terraform apply
+        terraform init 
+	terraform plan
+	terraform apply
+
+This will trigger provisioning and deployment of all elements for the MapR cluster.
 
 ## Post Deployment
 
@@ -52,7 +75,7 @@ Post deployment is automated using a scripted process that uses Bash and MapR se
         ssh -i ~/.ssh/id_rsa opc@<public_ip_of_bastion>
         sudo screen -r
 
-Cluster provisioning can take up to 45 minutes.
+Cluster provisioning can take up to 45 minutes.  Output will show on the screen as each step is completed.
 
 ## Security and Post-Deployment Auditing
 
@@ -65,3 +88,6 @@ Remove ssh private keys from the Bastion host
 Replace the authorized_keys file in /root/.ssh/ on all hosts with the backup copy
 
         sudo mv /root/.ssh/authorized_keys.bak /root/.ssh/authorized_keys
+
+## MapR UI Access
+Access to the UI can be done either using SSH tunnels through the Bastion host, or if the datanodes have Internet IPs, then direct access is possible.   By default, MCS is deployed to the second datanode of the cluster.
