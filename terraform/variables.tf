@@ -38,7 +38,7 @@ variable "InstanceImageOCID" {
 variable "nodecount" { default = "5" }
 
 ## Specify the size of each Block Volume attached to Data Node Hosts
-variable "blocksize_in_gbs" { default = "1500" }
+variable "blocksize_in_gbs" { default = "1000" }
 
 ## Boot Volume Size in GB
 variable "boot_volume_size" { default = "256" }

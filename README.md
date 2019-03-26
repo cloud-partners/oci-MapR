@@ -18,7 +18,9 @@ Modify the env-vars file prior to deployment and modify the number of data nodes
 The above deploys a 5 node cluster.
 
 ## Block Volumes
-Use of Block Volumes is supported with the example block.tf.NO.  Simply rename this file to block.tf and Terraform will create and attach Block Volumes which scale with Data Node count.  This template is set for 12 Block Volumes, defaulting to 1TB in size.   The size can be controlled by modifying the default value in variables.tf.  It is recommended to tailor your Block Volume topology when using VMs to support aggregate IO for your workload.   In practice it's best to have a minimum of 4 Block Volumes at 700GB or greater at a minimum if not using DenseIO shapes.
+Use of Block Volumes is supported with the example block.tf.NO.  Block Volumes should only be used with BM and VM shapes which do not have local storage.   If you are using DenseIO shapes, DO NOT mix heterogenous storage.
+
+To enable Block Volume use, rename this file to block.tf and Terraform will create and attach Block Volumes which scale with Data Node count.  This template is preconfigured with 12 Block Volumes, defaulting to 1TB in size.   The size can be controlled by modifying the default value in variables.tf.  It is recommended to tailor your Block Volume topology when using VMs to support aggregate IO for your workload.   In practice it's best to have a minimum of 4 Block Volumes at 700GB or greater at a minimum if not using DenseIO shapes.
 
 It is also advised to add the Block Volume attachments as dependencies for remote-exec.tf (in depends_on) to ensure remote execution is not triggered until all Block Volumes are created and attached.
 
