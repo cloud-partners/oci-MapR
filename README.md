@@ -63,6 +63,13 @@ Modify scripts/mapr_advanced_yaml.sh to set these versions.   Pre-configured ver
 
 Modification of scripts/mapr_advanced_yaml.sh can be done to customize cluster and service layout.   Knowledge of the use of MapR Stanza files is required, otherwise this may break your install.
 
+## Cluster Network Security
+By default, the MapR cluster is deployed onto a private subnet which is not directly accessible from the Internet.  If you want to change this, modify terraform/network.tf
+
+	prohibit_public_ip_on_vnic = "true"
+
+Set the above to false, or remove the line entirely.  This will provision Public IPs for each datanode host.
+
 ## Deployment
 
 Deploy using standard Terraform commands
