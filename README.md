@@ -1,5 +1,7 @@
 # oci-mapr
-This is a Terraform template for deploying a fully configured MapR cluster on OCI.
+This is a Terraform module that deploys [MapR](https://mapr.com/products/) on [Oracle Cloud Infrastructure (OCI)](https://cloud.oracle.com/en_US/cloud-infrastructure).  It isdeveloped jointly by Oracle and MapR.
+
+## Sizing
 
 |             | Data Nodes   | Bastion Instance |
 |-------------|----------------|------------------|
@@ -7,7 +9,7 @@ This is a Terraform template for deploying a fully configured MapR cluster on OC
 | Minimum     | VM.Standard2.16 | VM.Standard2.1   |
 
 ## Prerequisites
-First off you'll need to do some pre deploy setup.  That's all detailed [here](https://github.com/oci-quickstart/oci-prerequisites).
+First off you'll need to do some pre deploy setup.  That's all detailed [here](https://github.com/oracle/oci-quickstart-prerequisites).
 
 ## Scaling
 
