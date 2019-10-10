@@ -1,5 +1,5 @@
-# oci-quickstart-mapr
-This is a Terraform module that deploys [MapR](https://mapr.com/products/) on [Oracle Cloud Infrastructure (OCI)](https://cloud.oracle.com/en_US/cloud-infrastructure).  It is developed jointly by Oracle and MapR. For instructions on how to use this material and details on getting support from the vendor that maintains this material, please contact them directly.
+# oci-mapr
+This is a Terraform module that deploys [MapR](https://mapr.com/products/) on [Oracle Cloud Infrastructure (OCI)](https://cloud.oracle.com/en_US/cloud-infrastructure).  It is developed jointly by Oracle and MapR.
 
 ## Sizing
 
